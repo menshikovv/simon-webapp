@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useTelegramBackButton } from '../../hooks/useTelegramBackButton'
+import { useScrollToTop } from '../../hooks/useScrollToTop'
 import s from './Layout.module.scss'
 
 export const Layout = () => {
@@ -13,6 +14,9 @@ export const Layout = () => {
     
     // Используем хук для управления кнопкой "Назад"
     useTelegramBackButton()
+    
+    // Автоматическая прокрутка наверх при смене маршрута
+    useScrollToTop()
 
     useEffect(() => {
         if (isTypingComplete) return
