@@ -1,11 +1,10 @@
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useTelegramBackButton } from '../../hooks/useTelegramBackButton'
 import s from './Layout.module.scss'
 
 export const Layout = () => {
     const navigate = useNavigate()
-    const location = useLocation()
     const [displayText, setDisplayText] = useState('')
     const fullText = 'ВЫБОР ЗА ТОБОЙ'
     const [currentIndex, setCurrentIndex] = useState(0)
