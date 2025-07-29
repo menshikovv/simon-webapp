@@ -2,9 +2,11 @@ import s from './Awake.module.scss'
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp'
 import { useState, useEffect } from 'react'
 import { Button } from '../Button/Button'
+import { useLocation } from 'react-router-dom'
 
 export const Awake = () => {
     useTelegramWebApp()
+    const location = useLocation()
     const [showNewText, setShowNewText] = useState(false)
     const [showVideoBlock, setShowVideoBlock] = useState(false)
     const [showButton, setShowButton] = useState(false)
@@ -28,6 +30,15 @@ export const Awake = () => {
             clearTimeout(timer3)
         }
     }, [])
+
+    // Прокрутка наверх при загрузке страницы
+    useEffect(() => {
+        const mainElement = document.querySelector('main')
+        if (mainElement) {
+            mainElement.scrollTo(0, 0)
+        }
+        window.scrollTo(0, 0)
+    }, [location.pathname])
 
     return (
         <div className={s.awakeContent}>
