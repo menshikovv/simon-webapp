@@ -1,7 +1,6 @@
 import s from './Awake.module.scss'
 import { useTelegramWebApp } from '../../hooks/useTelegramWebApp'
 import { useState, useEffect } from 'react'
-import trailerVideo from '../../assets/trailer.mp4'
 import { Button } from '../Button/Button'
 
 export const Awake = () => {
