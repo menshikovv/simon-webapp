@@ -64,7 +64,7 @@ export const Awake = () => {
                             loop
                             controls={true}
                         >
-                            <source src='https://pouch.jumpshare.com/preview/Ob5AiPWA2fMKzv1QJ4-zLt_z8egd0abQYFB_P1CVQR-OuS6WPDhEEpeRaF7ATZmw1BUGfu0n6VGn3HN23pW0L-RhzV_hbR0XxweVJJGt8zs8qvKxD3f3HIm_5Gi6BI-KxEs5AzQoPeimaRJAbAy1EG6yjbN-I2pg_cnoHs_AmgI.mp4' type="video/mp4" />
+                            <source src='https://storage.yandexcloud.net/files-talentio/trailer.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=YCAJENPFm4M3Rmxv3z76pChWe%2F20250729%2Fru-central1%2Fs3%2Faws4_request&X-Amz-Date=20250729T112110Z&X-Amz-Expires=2592000&X-Amz-Signature=5a577e5aff37a43912d24e532c89cb1d1362f5c508dfd117f1f562d1f7a643a4&X-Amz-SignedHeaders=host' type="video/mp4" />
                         </video>
                         <p>AWAKE TRAILER</p>
                     </div>
