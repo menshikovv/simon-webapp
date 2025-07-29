@@ -1,0 +1,16 @@
+.button {
+    background: linear-gradient(135deg, #000000 0%, #121111 100%);
+    color: #fff;
+    width: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Unbounded", serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+    border: 1px solid #282828;
+    box-shadow: 0 4px 12px rgba(46, 47, 50, 0.4);
+}
