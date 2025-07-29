@@ -43,7 +43,7 @@ export const Awake = () => {
                             loop
                             controls={true}
                         >
-                            <source src={trailerVideo} type="video/mp4" />
+                            <source src='https://pouch.jumpshare.com/preview/Ob5AiPWA2fMKzv1QJ4-zLt_z8egd0abQYFB_P1CVQR-OuS6WPDhEEpeRaF7ATZmw1BUGfu0n6VGn3HN23pW0L-RhzV_hbR0XxweVJJGt8zs8qvKxD3f3HIm_5Gi6BI-KxEs5AzQoPeimaRJAbAy1EG6yjbN-I2pg_cnoHs_AmgI.mp4' type="video/mp4" />
                         </video>
                         <p>AWAKE TRAILER</p>
                     </div>
