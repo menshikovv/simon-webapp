@@ -1,8 +1,11 @@
 import s from './Socials.module.scss'
 import { YouTubeIcon, TikTokIcon, InstagramIcon, TelegramIcon } from './SocialIcons'
 import { useState, useEffect } from 'react'
+import { tg } from '../../shared/lib/telegram'
+import { useNavigate } from 'react-router-dom'
 
 export const Socials = () => {
+    const navigate = useNavigate()
     const [showContent, setShowContent] = useState(false)
     
     useEffect(() => {
@@ -11,6 +14,17 @@ export const Socials = () => {
         }, 500)
 
         return () => clearTimeout(timer)
+    }, [])
+
+    useEffect(() => {
+        tg.BackButton.show()
+        tg.BackButton.onClick(() => {
+            navigate(-1)
+            tg.BackButton.hide()
+        })
+        return () => {
+            tg.BackButton.hide()
+        }
     }, [])
 
     const socialLinks = [

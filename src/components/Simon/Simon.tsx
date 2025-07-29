@@ -1,15 +1,25 @@
 import s from './Simon.module.scss'
-import { useTelegramWebApp } from '../../hooks/useTelegramWebApp'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Button/Button'
+import { tg } from '../../shared/lib/telegram'
 
 export const Simon = () => {
-    useTelegramWebApp()
     const navigate = useNavigate()
     const [showContent, setShowContent] = useState(false)
     const [hideTitle, setHideTitle] = useState(false)
     const [titleFadeOut, setTitleFadeOut] = useState(false)
+
+    useEffect(() => {
+        tg.BackButton.show()
+        tg.BackButton.onClick(() => {
+            navigate(-1)
+            tg.BackButton.hide()
+        })
+        return () => {
+            tg.BackButton.hide()
+        }
+    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -26,7 +36,6 @@ export const Simon = () => {
         return () => clearTimeout(timer)
     }, [])
 
-    // Управление overflow через события
     useEffect(() => {
         const event = new CustomEvent('overflowChange', {
             detail: { hidden: !hideTitle }

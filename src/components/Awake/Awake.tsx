@@ -1,15 +1,26 @@
 import s from './Awake.module.scss'
-import { useTelegramWebApp } from '../../hooks/useTelegramWebApp'
 import { useState, useEffect } from 'react'
 import { Button } from '../Button/Button'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { tg } from '../../shared/lib/telegram'
 
 export const Awake = () => {
-    useTelegramWebApp()
     const location = useLocation()
+    const navigate = useNavigate()
     const [showNewText, setShowNewText] = useState(false)
     const [showVideoBlock, setShowVideoBlock] = useState(false)
     const [showButton, setShowButton] = useState(false)
+
+    useEffect(() => {
+        tg.BackButton.show()
+        tg.BackButton.onClick(() => {
+            navigate(-1)
+            tg.BackButton.hide()
+        })
+        return () => {
+            tg.BackButton.hide()
+        }
+    }, [])
 
     useEffect(() => {
         const timer1 = setTimeout(() => {

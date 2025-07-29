@@ -1,13 +1,25 @@
 import s from './Prod.module.scss'
-import { useTelegramWebApp } from '../../hooks/useTelegramWebApp'
 import { Button } from '../Button/Button'
 import { useState, useEffect } from 'react'
+import { tg } from '../../shared/lib/telegram'
+import { useNavigate } from 'react-router-dom'
 
 export const Prod = () => {
-    useTelegramWebApp()
+    const navigate = useNavigate()
     const [showContent, setShowContent] = useState(false)
     const [hideTitle, setHideTitle] = useState(false)
     const [titleFadeOut, setTitleFadeOut] = useState(false)
+
+    useEffect(() => {
+        tg.BackButton.show()
+        tg.BackButton.onClick(() => {
+            navigate(-1)
+            tg.BackButton.hide()
+        })
+        return () => {
+            tg.BackButton.hide()
+        }
+    }, [])
 
     useEffect(() => {
         const timer = setTimeout(() => {
