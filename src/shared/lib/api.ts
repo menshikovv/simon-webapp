@@ -2,6 +2,9 @@
 
 const API_BASE_URL = '/api' // Для Vercel используем относительный путь
 
+// Можно переключить на KV endpoint для более надежного хранения
+const USE_KV_ENDPOINT = false
+
 export interface SimonContent {
     age: string
     income: string
@@ -70,7 +73,8 @@ export const saveSimonContent = async (content: SimonContent): Promise<boolean> 
 // Функции для работы с сервером (основные)
 export const loadSimonContentServer = async (): Promise<SimonContent> => {
     try {
-        const response = await fetch(`${API_BASE_URL}/simon-content`)
+        const endpoint = USE_KV_ENDPOINT ? 'simon-content-kv' : 'simon-content'
+        const response = await fetch(`${API_BASE_URL}/${endpoint}`)
         if (!response.ok) {
             throw new Error('Failed to load content from server')
         }
@@ -84,7 +88,8 @@ export const loadSimonContentServer = async (): Promise<SimonContent> => {
 
 export const saveSimonContentServer = async (content: SimonContent): Promise<boolean> => {
     try {
-        const response = await fetch(`${API_BASE_URL}/simon-content`, {
+        const endpoint = USE_KV_ENDPOINT ? 'simon-content-kv' : 'simon-content'
+        const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

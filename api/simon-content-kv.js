@@ -28,48 +28,82 @@ const defaultData = {
 }
 
 export default async function handler(req, res) {
-    // Настройка CORS
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
-
-    if (req.method === 'OPTIONS') {
-        res.status(200).end()
-        return
-    }
-
     try {
+        // Настройка CORS
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
+
+        if (req.method === 'OPTIONS') {
+            res.status(200).end()
+            return
+        }
+
         if (req.method === 'GET') {
-            // Получаем данные из KV
-            let data = await kv.get(DATA_KEY)
-            
-            // Если данных нет, используем дефолтные
-            if (!data) {
-                data = defaultData
-                // Сохраняем дефолтные данные
-                await kv.set(DATA_KEY, data)
+            try {
+                // Получаем данные из KV
+                let data = await kv.get(DATA_KEY)
+                
+                // Если данных нет, используем дефолтные
+                if (!data) {
+                    data = defaultData
+                    // Сохраняем дефолтные данные
+                    await kv.set(DATA_KEY, data)
+                }
+                
+                res.status(200).json(data)
+            } catch (error) {
+                console.error('Error getting data from KV:', error)
+                // Fallback к дефолтным данным
+                res.status(200).json(defaultData)
             }
-            
-            res.status(200).json(data)
         } else if (req.method === 'POST') {
-            // Получаем текущие данные
-            let currentData = await kv.get(DATA_KEY)
-            if (!currentData) {
-                currentData = defaultData
+            try {
+                // Проверяем, что тело запроса существует
+                if (!req.body) {
+                    return res.status(400).json({ 
+                        success: false, 
+                        message: 'Request body is required' 
+                    })
+                }
+
+                // Получаем текущие данные
+                let currentData = await kv.get(DATA_KEY)
+                if (!currentData) {
+                    currentData = defaultData
+                }
+                
+                // Обновляем данные
+                const updatedData = { ...currentData, ...req.body }
+                
+                // Сохраняем в KV
+                await kv.set(DATA_KEY, updatedData)
+                
+                res.status(200).json({ 
+                    success: true, 
+                    message: 'Content updated successfully',
+                    data: updatedData
+                })
+            } catch (error) {
+                console.error('Error updating content in KV:', error)
+                res.status(500).json({ 
+                    success: false, 
+                    message: 'Error updating content',
+                    error: error.message 
+                })
             }
-            
-            // Обновляем данные
-            const updatedData = { ...currentData, ...req.body }
-            
-            // Сохраняем в KV
-            await kv.set(DATA_KEY, updatedData)
-            
-            res.status(200).json({ success: true, message: 'Content updated successfully' })
         } else {
-            res.status(405).json({ message: 'Method not allowed' })
+            res.status(405).json({ 
+                success: false,
+                message: 'Method not allowed' 
+            })
         }
     } catch (error) {
-        console.error('Error in API:', error)
-        res.status(500).json({ success: false, message: 'Internal server error' })
+        console.error('Unexpected error in API:', error)
+        res.status(500).json({ 
+            success: false, 
+            message: 'Internal server error',
+            error: error.message 
+        })
     }
 } 
