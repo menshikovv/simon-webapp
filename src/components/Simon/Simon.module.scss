@@ -30,62 +30,6 @@
             animation: fadeIn 0.8s ease-in-out;
         }
         
-        .editControls {
-            margin-bottom: 1rem;
-            text-align: center;
-            
-            .editButton {
-                background: #007AFF;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                transition: background-color 0.3s ease;
-                
-                &:hover {
-                    background: #0056CC;
-                }
-            }
-            
-            .buttonGroup {
-                display: flex;
-                gap: 8px;
-                justify-content: center;
-                
-                .saveButton {
-                    background: #34C759;
-                    color: white;
-                    border: none;
-                    padding: 8px 16px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    transition: background-color 0.3s ease;
-                    
-                    &:hover {
-                        background: #28A745;
-                    }
-                }
-                
-                .cancelButton {
-                    background: #FF3B30;
-                    color: white;
-                    border: none;
-                    padding: 8px 16px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-size: 14px;
-                    transition: background-color 0.3s ease;
-                    
-                    &:hover {
-                        background: #DC3545;
-                    }
-                }
-            }
-        }
-        
         .mainInfo {
             margin-bottom: 3rem;
             
@@ -120,22 +64,6 @@
                         opacity: 0.9;
                         margin-top: 0.5rem;
                     }
-                    
-                    .editInput {
-                        border: 1px solid #007AFF;
-                        border-radius: 4px;
-                        padding: 4px;
-                        font-size: inherit;
-                        font-weight: bold;
-                        background: rgba(255,255,255,0.1);
-                        color: white;
-                        text-align: center;
-                        width: 100%;
-                        
-                        &::placeholder {
-                            color: rgba(255,255,255,0.7);
-                        }
-                    }
                 }
             }
             
@@ -150,27 +78,6 @@
                         color: #ffd700;
                         font-size: 1.2rem;
                         text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-                    }
-                }
-                
-                .editTextarea {
-                    border: 1px solid #007AFF;
-                    border-radius: 4px;
-                    padding: 4px;
-                    font-size: inherit;
-                    width: 100%;
-                    min-height: 60px;
-                    resize: vertical;
-                    background: rgba(255,255,255,0.1);
-                    color: white;
-                    
-                    &.genius {
-                        font-weight: bold;
-                        min-height: 40px;
-                    }
-                    
-                    &::placeholder {
-                        color: rgba(255,255,255,0.7);
                     }
                 }
             }
@@ -194,22 +101,6 @@
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             }
             
-            .addButton {
-                background: #007AFF;
-                color: white;
-                border: none;
-                padding: 6px 12px;
-                border-radius: 6px;
-                cursor: pointer;
-                font-size: 12px;
-                margin-bottom: 10px;
-                transition: background-color 0.3s ease;
-                
-                &:hover {
-                    background: #0056CC;
-                }
-            }
-            
             ul {
                 list-style: none;
                 padding: 0;
@@ -231,49 +122,6 @@
                         font-size: 1.2rem;
                     }
                     
-                    &.editing {
-                        padding-right: 40px;
-                    }
-                    
-                    .editTextarea {
-                        border: 1px solid #007AFF;
-                        border-radius: 4px;
-                        padding: 4px;
-                        font-size: inherit;
-                        width: 100%;
-                        min-height: 40px;
-                        resize: vertical;
-                        background: rgba(255,255,255,0.1);
-                        color: white;
-                        
-                        &::placeholder {
-                            color: rgba(255,255,255,0.7);
-                        }
-                    }
-                    
-                    .removeButton {
-                        position: absolute;
-                        right: -30px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        background: #FF3B30;
-                        color: white;
-                        border: none;
-                        border-radius: 50%;
-                        width: 20px;
-                        height: 20px;
-                        cursor: pointer;
-                        font-size: 12px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        transition: background-color 0.3s ease;
-                        
-                        &:hover {
-                            background: #DC3545;
-                        }
-                    }
-                    
                     strong {
                         color: #ffd700;
                         font-weight: bold;
@@ -287,64 +135,6 @@
                                 color: #ffed4e;
                             }
                         }
-                    }
-                }
-            }
-        }
-        
-        .bigBlock {
-            margin-bottom: 2.5rem;
-            text-align: left;
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            
-            h3 {
-                font-size: 1.4rem;
-                font-weight: bold;
-                margin-bottom: 1rem;
-                text-align: center;
-                color: #ffd700;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            }
-            
-            .addButton {
-                background: #007AFF;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-size: 14px;
-                margin-bottom: 15px;
-                transition: background-color 0.3s ease;
-                
-                &:hover {
-                    background: #0056CC;
-                }
-            }
-            
-            .bigContent {
-                font-size: 1.1rem;
-                line-height: 1.8;
-                text-align: center;
-                
-                .editTextarea {
-                    border: 1px solid #007AFF;
-                    border-radius: 8px;
-                    padding: 12px;
-                    font-size: inherit;
-                    width: 100%;
-                    min-height: 120px;
-                    resize: vertical;
-                    background: rgba(255,255,255,0.1);
-                    color: white;
-                    line-height: 1.6;
-                    
-                    &::placeholder {
-                        color: rgba(255,255,255,0.7);
                     }
                 }
             }
@@ -384,18 +174,6 @@
         }
         
         .content {
-            .editControls {
-                .buttonGroup {
-                    flex-direction: column;
-                    align-items: center;
-                    
-                    .saveButton,
-                    .cancelButton {
-                        width: 120px;
-                    }
-                }
-            }
-            
             .mainInfo {
                 .stats {
                     gap: 1rem;
@@ -435,29 +213,6 @@
                 ul li {
                     font-size: 0.9rem;
                     padding-left: 1.2rem;
-                    
-                    &.editing {
-                        padding-right: 35px;
-                    }
-                    
-                    .removeButton {
-                        right: -25px;
-                        width: 18px;
-                        height: 18px;
-                        font-size: 10px;
-                    }
-                }
-            }
-            
-            .bigBlock {
-                padding: 1.5rem;
-                
-                h3 {
-                    font-size: 1.2rem;
-                }
-                
-                .bigContent {
-                    font-size: 1rem;
                 }
             }
         }

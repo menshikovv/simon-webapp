@@ -94,30 +94,6 @@ export const Simon = () => {
         }))
     }
 
-    // Функции для больших блоков
-    const addBigBlock = () => {
-        setEditableContent(prev => ({
-            ...prev,
-            bigBlocks: [...prev.bigBlocks, { title: 'Новый блок', content: 'Содержимое нового блока' }]
-        }))
-    }
-
-    const removeBigBlock = (index: number) => {
-        setEditableContent(prev => ({
-            ...prev,
-            bigBlocks: prev.bigBlocks.filter((_, i) => i !== index)
-        }))
-    }
-
-    const updateBigBlock = (index: number, field: 'title' | 'content', value: string) => {
-        setEditableContent(prev => ({
-            ...prev,
-            bigBlocks: prev.bigBlocks.map((block, i) => 
-                i === index ? { ...block, [field]: value } : block
-            )
-        }))
-    }
-
     useEffect(() => {
         tg.BackButton.show()
         tg.BackButton.onClick(() => {
@@ -183,25 +159,46 @@ export const Simon = () => {
                 <>
                 <div className={`${s.content} ${s.fadeIn}`}>
                     {canEdit && (
-                        <div className={s.editControls}>
+                        <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
                             {!isEditing ? (
                                 <button 
                                     onClick={handleEdit}
-                                    className={s.editButton}
+                                    style={{
+                                        background: '#007AFF',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '8px 16px',
+                                        borderRadius: '8px',
+                                        cursor: 'pointer'
+                                    }}
                                 >
                                     Редактировать
                                 </button>
                             ) : (
-                                <div className={s.buttonGroup}>
+                                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
                                     <button 
                                         onClick={handleSave}
-                                        className={s.saveButton}
+                                        style={{
+                                            background: '#34C759',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: '8px 16px',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer'
+                                        }}
                                     >
                                         Сохранить
                                     </button>
                                     <button 
                                         onClick={handleCancel}
-                                        className={s.cancelButton}
+                                        style={{
+                                            background: '#FF3B30',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: '8px 16px',
+                                            borderRadius: '8px',
+                                            cursor: 'pointer'
+                                        }}
                                     >
                                         Отмена
                                     </button>
@@ -218,7 +215,13 @@ export const Simon = () => {
                                         type="text"
                                         value={editableContent.age}
                                         onChange={(e) => updateContent('age', e.target.value)}
-                                        className={s.editInput}
+                                        style={{
+                                            border: '1px solid #007AFF',
+                                            borderRadius: '4px',
+                                            padding: '4px',
+                                            fontSize: 'inherit',
+                                            fontWeight: 'bold'
+                                        }}
                                     />
                                 ) : (
                                     <span className={s.number}>{editableContent.age}</span>
@@ -231,7 +234,13 @@ export const Simon = () => {
                                         type="text"
                                         value={editableContent.income}
                                         onChange={(e) => updateContent('income', e.target.value)}
-                                        className={s.editInput}
+                                        style={{
+                                            border: '1px solid #007AFF',
+                                            borderRadius: '4px',
+                                            padding: '4px',
+                                            fontSize: 'inherit',
+                                            fontWeight: 'bold'
+                                        }}
                                     />
                                 ) : (
                                     <span className={s.number}>{editableContent.income}</span>
@@ -245,7 +254,15 @@ export const Simon = () => {
                                 <textarea
                                     value={editableContent.description}
                                     onChange={(e) => updateContent('description', e.target.value)}
-                                    className={s.editTextarea}
+                                    style={{
+                                        border: '1px solid #007AFF',
+                                        borderRadius: '4px',
+                                        padding: '4px',
+                                        fontSize: 'inherit',
+                                        width: '100%',
+                                        minHeight: '60px',
+                                        resize: 'vertical'
+                                    }}
                                 />
                             ) : (
                                 <p>{editableContent.description}</p>
@@ -254,7 +271,16 @@ export const Simon = () => {
                                 <textarea
                                     value={editableContent.genius}
                                     onChange={(e) => updateContent('genius', e.target.value)}
-                                    className={`${s.editTextarea} ${s.genius}`}
+                                    style={{
+                                        border: '1px solid #007AFF',
+                                        borderRadius: '4px',
+                                        padding: '4px',
+                                        fontSize: 'inherit',
+                                        width: '100%',
+                                        minHeight: '40px',
+                                        resize: 'vertical',
+                                        fontWeight: 'bold'
+                                    }}
                                 />
                             ) : (
                                 <p className={s.genius}>{editableContent.genius}</p>
@@ -267,7 +293,16 @@ export const Simon = () => {
                         {isEditing && (
                             <button 
                                 onClick={addBackgroundItem}
-                                className={s.addButton}
+                                style={{
+                                    background: '#007AFF',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '6px 12px',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontSize: '12px',
+                                    marginBottom: '10px'
+                                }}
                             >
                                 + Добавить пункт
                             </button>
@@ -275,7 +310,7 @@ export const Simon = () => {
                         <ul>
                             {isEditing ? (
                                 editableContent.background.map((item, index) => (
-                                    <li key={index} className={s.editing}>
+                                    <li key={index} style={{ position: 'relative' }}>
                                         <textarea
                                             value={item}
                                             onChange={(e) => {
@@ -283,11 +318,35 @@ export const Simon = () => {
                                                 newBackground[index] = e.target.value
                                                 updateContent('background', newBackground)
                                             }}
-                                            className={s.editTextarea}
+                                            style={{
+                                                border: '1px solid #007AFF',
+                                                borderRadius: '4px',
+                                                padding: '4px',
+                                                fontSize: 'inherit',
+                                                width: '100%',
+                                                minHeight: '40px',
+                                                resize: 'vertical'
+                                            }}
                                         />
                                         <button 
                                             onClick={() => removeBackgroundItem(index)}
-                                            className={s.removeButton}
+                                            style={{
+                                                position: 'absolute',
+                                                right: '-30px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                background: '#FF3B30',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                cursor: 'pointer',
+                                                fontSize: '12px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
                                         >
                                             ×
                                         </button>
@@ -306,7 +365,16 @@ export const Simon = () => {
                         {isEditing && (
                             <button 
                                 onClick={addCurrentItem}
-                                className={s.addButton}
+                                style={{
+                                    background: '#007AFF',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '6px 12px',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontSize: '12px',
+                                    marginBottom: '10px'
+                                }}
                             >
                                 + Добавить пункт
                             </button>
@@ -314,7 +382,7 @@ export const Simon = () => {
                         <ul>
                             {isEditing ? (
                                 editableContent.current.map((item, index) => (
-                                    <li key={index} className={s.editing}>
+                                    <li key={index} style={{ position: 'relative' }}>
                                         <textarea
                                             value={item}
                                             onChange={(e) => {
@@ -322,11 +390,35 @@ export const Simon = () => {
                                                 newCurrent[index] = e.target.value
                                                 updateContent('current', newCurrent)
                                             }}
-                                            className={s.editTextarea}
+                                            style={{
+                                                border: '1px solid #007AFF',
+                                                borderRadius: '4px',
+                                                padding: '4px',
+                                                fontSize: 'inherit',
+                                                width: '100%',
+                                                minHeight: '40px',
+                                                resize: 'vertical'
+                                            }}
                                         />
                                         <button 
                                             onClick={() => removeCurrentItem(index)}
-                                            className={s.removeButton}
+                                            style={{
+                                                position: 'absolute',
+                                                right: '-30px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                background: '#FF3B30',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                cursor: 'pointer',
+                                                fontSize: '12px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
                                         >
                                             ×
                                         </button>
@@ -348,58 +440,6 @@ export const Simon = () => {
                             )}
                         </ul>
                     </div>
-
-                    {/* Большие блоки */}
-                    {editableContent.bigBlocks.map((block, index) => (
-                        <div key={index} className={s.bigBlock}>
-                            {isEditing && (
-                                <button 
-                                    onClick={() => removeBigBlock(index)}
-                                    className={s.removeButton}
-                                    style={{ position: 'absolute', right: '10px', top: '10px' }}
-                                >
-                                    ×
-                                </button>
-                            )}
-                            {isEditing ? (
-                                <>
-                                    <input
-                                        type="text"
-                                        value={block.title}
-                                        onChange={(e) => updateBigBlock(index, 'title', e.target.value)}
-                                        className={s.editInput}
-                                        style={{ marginBottom: '15px', fontSize: '1.4rem', fontWeight: 'bold' }}
-                                    />
-                                    <div className={s.bigContent}>
-                                        <textarea
-                                            value={block.content}
-                                            onChange={(e) => updateBigBlock(index, 'content', e.target.value)}
-                                            className={s.editTextarea}
-                                        />
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    <h3>{block.title}</h3>
-                                    <div className={s.bigContent}>
-                                        <p>{block.content}</p>
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    ))}
-
-                    {isEditing && (
-                        <div className={s.bigBlock}>
-                            <button 
-                                onClick={addBigBlock}
-                                className={s.addButton}
-                                style={{ fontSize: '14px', padding: '8px 16px' }}
-                            >
-                                + Добавить большой блок
-                            </button>
-                        </div>
-                    )}
                 </div>
 
                 <div className={s.buttonContainer}>

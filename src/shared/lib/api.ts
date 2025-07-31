@@ -9,10 +9,6 @@ export interface SimonContent {
     genius: string
     background: string[]
     current: string[]
-    bigBlocks: {
-        title: string
-        content: string
-    }[]
 }
 
 // Загрузка данных с сервера
@@ -44,8 +40,7 @@ export const loadSimonContent = async (): Promise<SimonContent> => {
                 '1 000 000₽/мес',
                 'Живу один в дорогущей хате в центре Москвы',
                 'Ушёл после 9 класса, живу как хочу'
-            ],
-            bigBlocks: []
+            ]
         }
     }
 }
@@ -141,8 +136,7 @@ export const loadSimonContentLocal = (): SimonContent => {
             '1 000 000₽/мес',
             'Живу один в дорогущей хате в центре Москвы',
             'Ушёл после 9 класса, живу как хочу'
-        ],
-        bigBlocks: []
+        ]
     }
 }
 
