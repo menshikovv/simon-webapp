@@ -65,6 +65,35 @@ export const Simon = () => {
         }))
     }
 
+    // Функции для добавления и удаления блоков
+    const addBackgroundItem = () => {
+        setEditableContent(prev => ({
+            ...prev,
+            background: [...prev.background, 'Новый пункт']
+        }))
+    }
+
+    const removeBackgroundItem = (index: number) => {
+        setEditableContent(prev => ({
+            ...prev,
+            background: prev.background.filter((_, i) => i !== index)
+        }))
+    }
+
+    const addCurrentItem = () => {
+        setEditableContent(prev => ({
+            ...prev,
+            current: [...prev.current, 'Новый пункт']
+        }))
+    }
+
+    const removeCurrentItem = (index: number) => {
+        setEditableContent(prev => ({
+            ...prev,
+            current: prev.current.filter((_, i) => i !== index)
+        }))
+    }
+
     useEffect(() => {
         tg.BackButton.show()
         tg.BackButton.onClick(() => {
@@ -261,10 +290,27 @@ export const Simon = () => {
 
                     <div className={s.section}>
                         <h3>Бэкграунд</h3>
+                        {isEditing && (
+                            <button 
+                                onClick={addBackgroundItem}
+                                style={{
+                                    background: '#007AFF',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '6px 12px',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontSize: '12px',
+                                    marginBottom: '10px'
+                                }}
+                            >
+                                + Добавить пункт
+                            </button>
+                        )}
                         <ul>
                             {isEditing ? (
                                 editableContent.background.map((item, index) => (
-                                    <li key={index}>
+                                    <li key={index} style={{ position: 'relative' }}>
                                         <textarea
                                             value={item}
                                             onChange={(e) => {
@@ -282,6 +328,28 @@ export const Simon = () => {
                                                 resize: 'vertical'
                                             }}
                                         />
+                                        <button 
+                                            onClick={() => removeBackgroundItem(index)}
+                                            style={{
+                                                position: 'absolute',
+                                                right: '-30px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                background: '#FF3B30',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                cursor: 'pointer',
+                                                fontSize: '12px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            ×
+                                        </button>
                                     </li>
                                 ))
                             ) : (
@@ -294,10 +362,27 @@ export const Simon = () => {
 
                     <div className={s.section}>
                         <h3>СЕЙЧАС</h3>
+                        {isEditing && (
+                            <button 
+                                onClick={addCurrentItem}
+                                style={{
+                                    background: '#007AFF',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '6px 12px',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    fontSize: '12px',
+                                    marginBottom: '10px'
+                                }}
+                            >
+                                + Добавить пункт
+                            </button>
+                        )}
                         <ul>
                             {isEditing ? (
                                 editableContent.current.map((item, index) => (
-                                    <li key={index}>
+                                    <li key={index} style={{ position: 'relative' }}>
                                         <textarea
                                             value={item}
                                             onChange={(e) => {
@@ -315,6 +400,28 @@ export const Simon = () => {
                                                 resize: 'vertical'
                                             }}
                                         />
+                                        <button 
+                                            onClick={() => removeCurrentItem(index)}
+                                            style={{
+                                                position: 'absolute',
+                                                right: '-30px',
+                                                top: '50%',
+                                                transform: 'translateY(-50%)',
+                                                background: '#FF3B30',
+                                                color: 'white',
+                                                border: 'none',
+                                                borderRadius: '50%',
+                                                width: '20px',
+                                                height: '20px',
+                                                cursor: 'pointer',
+                                                fontSize: '12px',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            ×
+                                        </button>
                                     </li>
                                 ))
                             ) : (
