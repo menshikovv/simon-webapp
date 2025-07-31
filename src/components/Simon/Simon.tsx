@@ -33,17 +33,17 @@ export const Simon = () => {
         if (tg?.showPopup) {
             tg.showPopup({
                 title: 'Сохранение...',
-                message: 'Изменения сохраняются для всех пользователей'
+                message: 'Изменения сохраняются локально'
             })
         }
         
-        // Сохраняем данные на сервер для всех пользователей
+        // Сохраняем данные локально
         const success = await saveSimonContentServer(editableContent)
         
         if (success) {
             // Показываем уведомление об успешном сохранении
             if (tg?.showAlert) {
-                tg.showAlert('✅ Изменения сохранены для всех пользователей!')
+                tg.showAlert('✅ Изменения сохранены локально!')
             }
         } else {
             if (tg?.showAlert) {
