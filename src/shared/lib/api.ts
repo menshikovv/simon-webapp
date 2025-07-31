@@ -93,8 +93,13 @@ export const saveSimonContentServer = async (content: SimonContent): Promise<boo
         })
         
         if (!response.ok) {
-            throw new Error('Failed to save content to server')
+            const errorText = await response.text()
+            console.error('Server error:', response.status, errorText)
+            throw new Error(`Failed to save content to server: ${response.status}`)
         }
+        
+        const result = await response.json()
+        console.log('Save result:', result)
         
         // Также сохраняем локально как backup
         saveSimonContentLocal(content)
@@ -102,7 +107,9 @@ export const saveSimonContentServer = async (content: SimonContent): Promise<boo
     } catch (error) {
         console.error('Error saving content to server:', error)
         // Fallback к localStorage
-        return saveSimonContentLocal(content)
+        const localSuccess = saveSimonContentLocal(content)
+        console.log('Local backup save result:', localSuccess)
+        return localSuccess
     }
 }
 
